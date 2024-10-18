@@ -22,6 +22,10 @@ def setup():
                             command=button_clicked,
                             bg = "#3e0b00",
                             fg= "#320900",
+                            width=20,
+                            height=5,
+                            padx=10,
+                            pady=10
 
 
                             )
