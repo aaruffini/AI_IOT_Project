@@ -1,9 +1,15 @@
 """
-This file is responsible for handling the requests to the LastFM api
+This file is a test to make sure the API
+is working as intended.
+Status code should be 200 - Ok
 """
 
-import requests  # Library to make HTTP Requests
+import requests # Library to make HTTP Requests
+import unittest
+
+
 # Read Key and get user agent
+
 f = open("venv/API_KEYS")
 LAST_FM_API_KEY = f.read()
 USER_AGENT = 'Dataquest'
@@ -18,5 +24,18 @@ payload = {
     'format': 'json'
 }
 r = requests.get('https://ws.audioscrobbler.com/2.0/', headers=headers, params=payload)
-print(r.status_code)
-print("Hello LastFM")
+
+if r.status_code == 200:
+    print(r)
+    print("All set!")
+else:
+    print(r)
+    print("Check API token")
+
+
+
+
+
+
+
+
