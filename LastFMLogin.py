@@ -16,8 +16,7 @@ def user_authentication(token, API_KEY):
 
 def login():
     f = open("venv/API_KEYS")
-    API_KEY = f.read()
-    print(API_KEY)
+    API_KEY = f.readline()
     API_SECRET = f.readline()
     SCROBURL = 'http://ws.audioscrobbler.com/2.0/'
 

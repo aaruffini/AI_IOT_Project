@@ -11,7 +11,7 @@ import unittest
 # Read Key and get user agent
 
 f = open("venv/API_KEYS")
-LAST_FM_API_KEY = f.read()
+LAST_FM_API_KEY = f.readline()
 USER_AGENT = 'Dataquest'
 # HTTP headers
 headers = {
