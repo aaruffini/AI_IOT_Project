@@ -2,6 +2,7 @@
 import pylast
 import os
 import certifi
+import Color_Extractor
 os.environ['SSL_CERT_FILE'] = certifi.where()
 print("certfi where " + certifi.where())
 
@@ -48,7 +49,7 @@ def login():
                 album_cover_url = album.get_cover_image()
                 if album_cover_url:
                     print(f"Album Cover URL: {album_cover_url}")
-                    return album_cover_url
+                    Color_Extractor.colorExtract(album_cover_url)
                 else:
                     print("No album cover available.")
             else:
