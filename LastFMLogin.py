@@ -31,17 +31,34 @@ def login():
         )
 
         # Fetch top artists
-        top_artists = network.get_top_artists(limit=5)  # Example: Fetch top 5 artists
-        print("Top Artists:")
-        for artist in top_artists:
-            print(f"{artist.item.name} - {artist.weight} plays")
-
     except FileNotFoundError:
         print("Error: 'API_KEYS' file not found. Please ensure it exists and contains valid credentials.")
     except pylast.NetworkError as e:
         print(f"NetworkError: {e}. Ensure your SSL certificates are correctly set up.")
     except Exception as e:
         print(f"An unexpected error occurred: {e}")
+
+    try:
+        user = network.get_user(USERNAME)
+        now_playing = user.get_now_playing()
+        if now_playing:
+            print(f"Currently playing: {now_playing}")
+            album = now_playing.get_album()
+            if album:
+                album_cover_url = album.get_cover_image()
+                if album_cover_url:
+                    print(f"Album Cover URL: {album_cover_url}")
+                    return album_cover_url
+                else:
+                    print("No album cover available.")
+            else:
+                print("No album associated with the current track.")
+        else:
+            print("No track is currently playing.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    finally:
+        print("Continuing")
 
 
 if __name__ == "__main__":
